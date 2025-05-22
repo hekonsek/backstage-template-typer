@@ -16,16 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Cache Poetry cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pypoetry
+        key: poetry-cache
+        restore-keys: |
+          poetry-cache
     - uses: actions/checkout@v4
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: "3.13"
+        python-version: "3.12"
     - name: Install poetry
       run: pip install poetry
-    - name: Install poetry export plugin
-      run: poetry self add poetry-plugin-export      
     - name: Install project dependencies
       run: poetry install
     - name: Check dependencies
-      run: poetry run check-dependencies
+      run: poetry run check-depz
