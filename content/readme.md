@@ -1,0 +1,1 @@
+# Python Typer cli application template
